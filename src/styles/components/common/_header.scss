@@ -1,0 +1,92 @@
+@use '../../base/mixins';
+
+.header {
+  width: 100%;
+  @include mixins.toRem('height',80);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: var(--white);
+
+  & .container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 22px 0 21px;
+    position: relative;
+
+    & .contacts {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      @include mixins.toRem('padding-top', 12);
+      @include mixins.toRem('margin-bottom', 12);
+
+      & .contact__email {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        & a {
+          @include mixins.toRem('font-size', 12);
+        }
+      }
+
+      & .contact__phone {
+        display: flex;
+        justify-items: center;
+        gap: 5px;
+
+        & .phones {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 2px;
+
+          & a {
+            @include mixins.toRem('font-size', 10);
+          }
+        }
+      }
+    }
+
+    & .main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      width: 100%;     
+      @include mixins.toRem('height', 29); 
+
+      & .content__img {
+        @include mixins.toRem('width', 80);
+        @include mixins.toRem('height', 20);
+        margin: 0
+      }
+
+      & .content__search {
+        position: relative;
+
+        & .search__icon {
+          position: absolute;
+          top: 5.5px;
+          left: 6px;
+        }
+        & .searcher {
+          @include mixins.toRem('width', 182);
+          @include mixins.toRem('font-size', 9);
+          padding: 4px 6px 4px 20px;
+          border-radius: 25px;
+          border: 1px solid var(--gray);
+        }
+      }
+
+      & .content__icons {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        @include mixins.toRem('width', 78);
+      }
+    }
+  }
+}

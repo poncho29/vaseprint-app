@@ -1,71 +1,58 @@
+import { NavLink } from "react-router-dom";
 
-import { Link, NavLink, useNavigate } from "react-router-dom";
+export const Navbar = ({ showNavbar, showMenu }) => {
 
-export const Navbar = () => {
-  const navigate = useNavigate();
-
-  const onLogout = () => {
-    navigate('/login', {
-      replace: true // Borra la ruta del historial para no poder regresar
-    });
-  }
+  // const onLogout = () => {
+  //   navigate('/login', {
+  //     replace: true // Borra la ruta del historial para no poder regresar
+  //   });
+  // }
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-2">ß
-      <div className="container">
-        <Link className="navbar-brand" to="/">
-          Vase Print
-        </Link>
-      
-        <div className="navbar-collapse">
-          <div className="navbar-nav">
-            <NavLink 
-              className={ ({isActive}) => `nav-item nav-link ${ isActive ? 'active' : '' }`} 
-              to="/"
-            >
-              Home
-            </NavLink>
-
-            <NavLink 
-              className={ ({isActive}) => `nav-item nav-link ${ isActive ? 'active' : '' }`}
-              to="/about"
-            >
-              About
-            </NavLink>
-
-            {/* <NavLink 
-              className={ ({isActive}) => `nav-item nav-link ${ isActive ? 'active' : '' }`}
-              to="/search"
-            >
-              Search
-            </NavLink>
-
-            <NavLink 
-              className={ ({isActive}) => `nav-item nav-link ${ isActive ? 'active' : '' }`}
-              to="/hero"
-            >
-              Hero
-            </NavLink> */}
-          </div>
-        </div>
-
-        <div 
-          className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end"
+    <>    
+      <nav className={`menu ${showNavbar && 'isActive'}`}>
+        <button 
+          className='menu__btn'
+          onClick={showMenu}
         >
-          <ul className="navbar-nav ml-auto">
-            <span className="nav-item nav-link text-primary">
-              Sebastian
-            </span>
+          X
+        </button>
 
-            <button 
-              className="nav-item nav-link btn"
-              onClick={onLogout}
-            >
-              Logout
-            </button>
-          </ul>
+        <div className='menu__links'>
+          <NavLink 
+            end
+            to="/"
+            onClick={showMenu}
+            className={ ({isActive}) => `nav__item ${ isActive ? 'active' : '' }`} 
+          >
+            Home
+          </NavLink>
+
+          <NavLink 
+            to="/store"
+            onClick={showMenu}
+            className={ ({isActive}) => `nav__item ${ isActive ? 'active' : '' }`}
+          >
+            Tienda
+          </NavLink>
+
+          <NavLink 
+            to="/about"
+            onClick={showMenu}
+            className={ ({isActive}) => `nav__item ${ isActive ? 'active' : '' }`}
+          >
+            Sobre nosotros
+          </NavLink>
+
+          <NavLink 
+            to="/contact"
+            onClick={showMenu}
+            className={ ({isActive}) => `nav__item ${ isActive ? 'active' : '' }`}
+          >
+            Contacto
+          </NavLink>
         </div>
-      </div>
-    </nav>
-  );
+      </nav>
+    </>
+  )
 };

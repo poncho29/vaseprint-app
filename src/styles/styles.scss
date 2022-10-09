@@ -1,10 +1,13 @@
+@use './base/normalize';
 @use './app';
-@use './normalize';
+@use './base/variables';
 
 // Layouts
 
 // Pages
 
 // Components
+@use './components/common/header';
+@use './components/common/navbar';
 
 // Tools

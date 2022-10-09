@@ -1,0 +1,37 @@
+@use '../../base/mixins';
+
+.menu {
+  position: absolute;
+  right: -180px;
+  @include mixins.toRem('width', 157);
+  @include mixins.toRem('height', 600);
+  padding: 42px 0 0 23px;
+  background-color: var(--white);
+  transition: all 0.5s ease;
+
+  & .menu__btn {
+    border-radius: 5px;
+    border: 1px solid var(--black);
+    margin-bottom: 30px;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  & .menu__links {
+    display: flex;
+    flex-direction: column;
+
+    & .nav__item {
+      @include mixins.toRem('height', 30);
+      @include mixins.toRem('font-size', 16);      
+    }
+
+    .active {
+      font-weight: bold;
+    }
+  }
+}
+
+.menu.isActive {
+  right: 0;
+}

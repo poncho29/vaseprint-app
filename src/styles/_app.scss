@@ -1,6 +1,25 @@
 // Globals
+html {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--black);
+  transition: all 0.5s ease-out;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Utilities
 .container {
-  width: 100%;
+  margin: 0 auto;
   max-width: 1200px;
 }
 
+.none {
+  display: none;
+}
