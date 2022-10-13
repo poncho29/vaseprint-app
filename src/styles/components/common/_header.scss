@@ -61,7 +61,11 @@
       & .content__img {
         @include mixins.toRem('width', 80);
         @include mixins.toRem('height', 20);
-        margin: 0
+        margin: 0;
+
+        & img {
+          width: inherit;
+        }
       }
 
       & .content__search {

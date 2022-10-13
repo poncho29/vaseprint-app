@@ -2,7 +2,7 @@
 
 .menu {
   position: absolute;
-  right: -180px;
+  right: -280px;
   @include mixins.toRem('width', 157);
   @include mixins.toRem('height', 600);
   padding: 42px 0 0 23px;
