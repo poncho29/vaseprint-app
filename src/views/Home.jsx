@@ -3,7 +3,9 @@ import { Slideshow } from "../components"
 export const Home = () => {
   return (
     <>
-      <Slideshow />
+      <div className="container">
+        <Slideshow />
+      </div>
     </>
   )
 }

@@ -2,11 +2,11 @@
 
 .slideshow {
   position: relative;
+  overflow: hidden;
 
   & .content__slideshow{
     display: flex;
     flex-wrap: nowrap;
-    overflow: hidden;
 
     & .slide {
       min-width: 100%;
