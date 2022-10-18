@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Link } from "react-router-dom"
 
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
@@ -7,33 +7,87 @@ import img1 from '../../assets/images/1.jpeg';
 import img2 from '../../assets/images/2.jpeg';
 import img3 from '../../assets/images/3.jpeg';
 
-export const Slideshow = () => {
+const Slideshow = ({ 
+    controls = false, 
+    autoplay = false, 
+    speed = '500', 
+    intervalo = '5000' 
+  }) => {
   const slideshowRef = useRef(null);
+  const intervalRef = useRef(null);
 
-  const next = () => {
+  const next = useCallback(() => {
+    // Comprueba que el slideshow tenga elementos
     if(slideshowRef.current.children.length > 0) {
+      // Obtiene el primer elemento
       const firstImg = slideshowRef.current.children[0];
 
-      slideshowRef.current.style.transition = `1000ms ease-out all`;
+      // Se establece la transicion del slidwshow
+      slideshowRef.current.style.transition = `${speed}ms ease-out all`;
 
       const sizeSlide = slideshowRef.current.children[0].offsetWidth;
 
+      // Se mueve el slideshow
       slideshowRef.current.style.transform = `translateX(-${sizeSlide}px)`;
 
-      const transition = () => {
+      const transicion = () => {
+        // Se reinicia la posicion del slideshow
         slideshowRef.current.style.transition = 'none';
         slideshowRef.current.style.transform = `translateX(0)`;
 
+        // Se mueve el primer elemento al final
         slideshowRef.current.appendChild(firstImg);
+
+        slideshowRef.current.removeEventListener('transitionend', transicion);
       }
 
-      slideshowRef.current.addEventListener('transitionend',transition);
+      // Evento para cuando finaliza la animación
+      slideshowRef.current.addEventListener('transitionend', transicion);
     }
-  }
+  }, [speed]);
   
   const back = () => {
     console.log('back');
+    if(slideshowRef.current.children.length > 0) {
+      // Obtenemos el ultimo elemento del slideshow
+      const index = slideshowRef.current.children.length -1;
+      const lastImg = slideshowRef.current.children[index];
+      slideshowRef.current.insertBefore(lastImg, slideshowRef.current.firstChild);
+
+      slideshowRef.current.style.transition = 'none';
+
+      const sizeSlide = slideshowRef.current.children[0].offsetWidth;
+      slideshowRef.current.style.transform = `translateX(-${sizeSlide}px)`;
+
+      setTimeout(() => {
+        slideshowRef.current.style.transition = `${speed}ms ease-out all`;
+        slideshowRef.current.style.transform = `translateX(0)`;
+      }, 30)
+    }
   }
+
+  useEffect(() => {
+    if(autoplay) {
+      // Inicia autoplay del slideshow
+      intervalRef.current = setInterval(() => {
+        next();
+      }, intervalo);
+  
+      // Detiene el autoplay del slideshow
+      slideshowRef.current.addEventListener('mouseenter', () => {
+        console.log('enter')
+        clearInterval(intervalRef.current);
+      })
+  
+      // Reiniciar el autoplay del slideshow
+      slideshowRef.current.addEventListener('mouseleave', () => {
+        console.log('leave')
+        intervalRef.current = setInterval(() => {
+          next();
+        }, intervalo);
+      })
+    }
+  }, [autoplay, intervalo, next]);
 
   return (
     <div className="slideshow">
@@ -67,20 +121,26 @@ export const Slideshow = () => {
         </div>
       </div>
 
-      <div className="controls__slideshow">
-        <button 
-          onClick={back}
-          className="btn__slide btn__left"
-        >
-          <IoIosArrowBack size={'28px'} color={'#FFF'} />
-        </button>
-        <button
-          onClick={next}
-          className="btn__slide btn__right"
-        >
-          <IoIosArrowForward size={'28px'} color={'#FFF'} />
-        </button>
-      </div>
+      { controls &&
+        <div className="controls__slideshow">
+          <button 
+            onClick={back}
+            className="btn__slide btn__left"
+          >
+            <IoIosArrowBack size={'28px'} color={'#FFF'} />
+          </button>
+          <button
+            onClick={next}
+            className="btn__slide btn__right"
+          >
+            <IoIosArrowForward size={'28px'} color={'#FFF'} />
+          </button>
+        </div>
+      }
     </div>
   )
+}
+
+export {
+  Slideshow
 }
