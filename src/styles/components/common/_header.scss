@@ -22,29 +22,85 @@
       @include mixins.toRem('padding-top', 12);
       @include mixins.toRem('margin-bottom', 12);
 
-      & .contact__email {
+      @include mixins.media(md) {
+        justify-content: space-between;
+      }
+
+      & .contacts-group {
         display: flex;
         align-items: center;
-        gap: 5px;
+        justify-content: center;
+        gap: 30px;
 
-        & a {
-          @include mixins.toRem('font-size', 12);
+        & .contact__email {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          & .contact-email_icon {
+            font-size: 18px;
+          }
+  
+          & a {
+            @include mixins.toRem('font-size', 12);
+          }
+
+          @include mixins.media(md) {
+            & .contact-email_icon {
+              font-size: 24px;
+            }
+
+            & a {
+              @include mixins.toRem('font-size', 14);
+            }
+          }
+        }
+  
+        & .contact__phone {
+          display: flex;
+          justify-items: center;
+          gap: 5px;
+  
+          & .phones {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2px;
+
+            & .contact-wpp_icon {
+              font-size: 18px;
+            }
+  
+            & a {
+              @include mixins.toRem('font-size', 10);
+            }
+
+            @include mixins.media(md) {
+              & .contact-wpp_icon {
+                font-size: 24px;
+              }
+  
+              & a {
+                @include mixins.toRem('font-size', 14);
+              }
+            }
+          }
         }
       }
 
-      & .contact__phone {
-        display: flex;
-        justify-items: center;
-        gap: 5px;
+      & .contacts__social {
+        display: none;
 
-        & .phones {
+        @include mixins.media(md) {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 2px;
 
-          & a {
-            @include mixins.toRem('font-size', 10);
+          & .contact-fa_icon {
+            font-size: 24px;
+            margin-right: 1rem;
+          }
+
+          & .contact-ig_icon {
+            font-size: 24px;
           }
         }
       }
@@ -58,17 +114,25 @@
       width: 100%;     
       @include mixins.toRem('height', 29); 
 
+      @include mixins.media(md) {
+        @include mixins.toRem('height', 65); 
+      }
+
       & .content__img {
-        @include mixins.toRem('width', 80);
-        @include mixins.toRem('height', 20);
+        width: 25%;
+        // @include mixins.toRem('width', 80);
+        @include mixins.toRem('max-width', 80);
+        @include mixins.toRem('height', 29);
         margin: 0;
 
-        & img {
-          width: inherit;
-        }
+        // @include mixins.media(md) {
+          @include mixins.toRem('width', 180);
+          @include mixins.toRem('height', 65);
+        // }
       }
 
       & .content__search {
+        width: 50%;
         position: relative;
 
         & .search__icon {
@@ -77,11 +141,18 @@
           left: 6px;
         }
         & .searcher {
-          @include mixins.toRem('width', 182);
+          width: 100%;
+          // @include mixins.toRem('width', 182);
+          @include mixins.toRem('max-width', 579);
           @include mixins.toRem('font-size', 9);
           padding: 4px 6px 4px 20px;
           border-radius: 25px;
           border: 1px solid var(--gray);
+
+          @include mixins.media(md) {
+            // width: 100%;
+            @include mixins.toRem('font-size', 16);
+          }
         }
       }
 

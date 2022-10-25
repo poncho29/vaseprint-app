@@ -1,3 +1,3 @@
-export * from './Common/Header';
-export * from './Common/Navbar';
-export * from './Common/Slideshow';
+export * from './common/Header';
+export * from './common/Navbar';
+export * from './common/Slideshow';

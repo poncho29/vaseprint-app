@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"
 
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 
-import img1 from '../../assets/images/1.jpeg';
-import img2 from '../../assets/images/2.jpeg';
-import img3 from '../../assets/images/3.jpeg';
+import carrusel1 from '../../assets/images/carrucel-1.png';
+import carrusel2 from '../../assets/images/carrucel-2.png';
 
-const Slideshow = ({ 
+const Slideshow = ({
+    message = true.valueOf,
     controls = false, 
     autoplay = false, 
     speed = '500', 
@@ -97,28 +97,37 @@ const Slideshow = ({
       >
         <div className="slide">
           <Link to="/">
-            <img src={img1} alt="portatil hp" />
+            <img src={carrusel1} alt="portatil hp" />
           </Link>
-          <div  className="slide__text">
-            <p>15% de descuesto en productos apple</p>
-          </div>
+          {
+            message &&
+              <div  className="slide__text">
+                <p>15% de descuesto en productos apple</p>
+              </div>
+          }
         </div>
         <div className="slide">
           <Link to="/">
-            <img src={img2} alt="portatil hp" />
+            <img src={carrusel2} alt="portatil hp" />
           </Link>
-          <div  className="slide__text">
-            <p>15% de descuesto en productos apple</p>
-          </div>
+          {
+            message &&
+              <div  className="slide__text">
+                <p>15% de descuesto en productos apple</p>
+              </div>
+          }
         </div>
-        <div className="slide">
+        {/* <div className="slide">
           <Link to="/">
             <img src={img3} alt="portatil hp" />
           </Link>
-          <div className="slide__text">
-            <p>15% de descuesto en productos apple</p>
-          </div>
-        </div>
+          {
+            message &&
+              <div  className="slide__text">
+                <p>15% de descuesto en productos apple</p>
+              </div>
+          }
+        </div> */}
       </div>
 
       { controls &&

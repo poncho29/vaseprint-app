@@ -7,9 +7,7 @@ export const AppRoutes = () => {
     <>
       <Header />
 
-      <div className="container">
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   )
 }

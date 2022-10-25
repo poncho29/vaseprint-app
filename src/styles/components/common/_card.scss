@@ -1,0 +1,80 @@
+@use '../../base/mixins';
+
+.card {
+  // @include mixins.toRem('width', 150);
+  // @include mixins.toRem('max-width', 260);
+  // @include mixins.toRem('height', 210);
+  @include mixins.toRem('padding', 12);
+  border-radius: 6px;
+  background: var(--white);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+
+  .card-img {
+    width: 100%;
+    margin: 0;
+    border-bottom: 2px solid var(--gray);
+
+    img {
+      width: inherit;
+    }
+  }
+
+  .card-description {
+    width: 100%;
+
+    .card-price {
+      @include mixins.toRem('font-size', 13);
+      font-weight: 600;
+      margin: 5px 0 0 0;
+    }
+
+    .card-title {
+      @include mixins.toRem('font-size', 10);
+      @include mixins.toRem('line-height', 19.5);
+      margin: 0;
+    }
+
+    .card-content-btn {
+      display: flex;
+      justify-content: center;
+      margin-top: 9px;
+
+      .card-btn {
+        @include mixins.toRem('width', 90);
+        @include mixins.toRem('height', 20);
+        @include mixins.toRem('font-size', 10);
+        @include mixins.toRem('line-height', 15);
+        color: var(--white);
+        text-align: center;
+        border: none;
+        border-radius: 11px;
+        background-color: var(--blue-ligth);
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--blue-dark)
+        }
+      }
+    }
+
+    @include mixins.media(md) {
+      .card-price {
+        @include mixins.toRem('font-size', 20);
+      }
+  
+      .card-title {
+        @include mixins.toRem('font-size', 18);
+        @include mixins.toRem('line-height', 27);
+      }
+
+      .card-content-btn {
+        .card-btn {
+          @include mixins.toRem('width', 120);
+          @include mixins.toRem('height', 30);
+          @include mixins.toRem('font-size', 15);
+          @include mixins.toRem('line-height', 27);
+        }
+      }
+    }
+  }  
+}

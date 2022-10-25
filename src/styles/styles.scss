@@ -1,14 +1,16 @@
-@use './base/normalize';
+@use './base/reset';
 @use './app';
-@use './base/variables';
 
 // Layouts
 
 // Pages
+@use './views/home';
 
 // Components
 @use './components/common/header';
 @use './components/common/navbar';
 @use './components/common/slideshow';
+@use './components/common/card';
+@use './components/home/cardTip';
 
 // Tools
