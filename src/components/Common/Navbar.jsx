@@ -25,7 +25,7 @@ export const Navbar = ({ showNavbar, showMenu }) => {
             onClick={showMenu}
             className={ ({isActive}) => `nav__item ${ isActive ? 'active' : '' }`} 
           >
-            Home
+            Inicio
           </NavLink>
 
           <NavLink 
@@ -34,6 +34,14 @@ export const Navbar = ({ showNavbar, showMenu }) => {
             className={ ({isActive}) => `nav__item ${ isActive ? 'active' : '' }`}
           >
             Tienda
+          </NavLink>
+
+          <NavLink 
+            to="/blog"
+            onClick={showMenu}
+            className={ ({isActive}) => `nav__item ${ isActive ? 'active' : '' }`}
+          >
+            Blog
           </NavLink>
 
           <NavLink 

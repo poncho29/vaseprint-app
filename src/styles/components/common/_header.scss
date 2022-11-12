@@ -2,7 +2,7 @@
 
 .header {
   width: 100%;
-  @include mixins.toRem('height',80);
+  height: auto;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -11,7 +11,7 @@
   & .container {
     display: flex;
     flex-direction: column;
-    padding: 0 22px 0 21px;
+    // padding: 0 22px 0 21px;
     position: relative;
 
     & .contacts {
@@ -23,6 +23,7 @@
       @include mixins.toRem('margin-bottom', 12);
 
       @include mixins.media(md) {
+        padding: 12px 22px;
         justify-content: space-between;
       }
 
@@ -97,10 +98,12 @@
           & .contact-fa_icon {
             font-size: 24px;
             margin-right: 1rem;
+            cursor: pointer;
           }
 
           & .contact-ig_icon {
             font-size: 24px;
+            cursor: pointer;
           }
         }
       }
@@ -115,20 +118,20 @@
       @include mixins.toRem('height', 29); 
 
       @include mixins.media(md) {
-        @include mixins.toRem('height', 65); 
+        padding: 0 22px;
+        @include mixins.toRem('height', 65);
       }
 
       & .content__img {
-        width: 25%;
-        // @include mixins.toRem('width', 80);
-        @include mixins.toRem('max-width', 80);
-        @include mixins.toRem('height', 29);
+        // width: 25%;
+        @include mixins.toRem('width', 80);
+        @include mixins.toRem('height', 32);
         margin: 0;
 
-        // @include mixins.media(md) {
-          @include mixins.toRem('width', 180);
-          @include mixins.toRem('height', 65);
-        // }
+        @include mixins.media(md) { // Tablet
+          @include mixins.toRem('width', 120);
+          @include mixins.toRem('height', 48);
+        }
       }
 
       & .content__search {
@@ -136,22 +139,33 @@
         position: relative;
 
         & .search__icon {
+          @include mixins.toRem('width', 12);
+          @include mixins.toRem('height', 12);
+          @include mixins.toRem('top', 5.5);
+          @include mixins.toRem('left', 6);
           position: absolute;
-          top: 5.5px;
-          left: 6px;
+
+          @include mixins.media(md) { // Tablet
+            @include mixins.toRem('width', 18);
+            @include mixins.toRem('height', 18);
+            @include mixins.toRem('top', 11);
+            @include mixins.toRem('left', 10);
+          }
         }
+
         & .searcher {
           width: 100%;
-          // @include mixins.toRem('width', 182);
+          height: auto;
           @include mixins.toRem('max-width', 579);
           @include mixins.toRem('font-size', 9);
           padding: 4px 6px 4px 20px;
           border-radius: 25px;
           border: 1px solid var(--gray);
 
-          @include mixins.media(md) {
-            // width: 100%;
+          @include mixins.media(md) { // Tablet
+            height: 40px;
             @include mixins.toRem('font-size', 16);
+            padding: 4px 6px 4px 30px;
           }
         }
       }
@@ -161,6 +175,24 @@
         align-items: center;
         gap: 16px;
         @include mixins.toRem('width', 78);
+
+        & .icon__menu {
+          cursor: pointer;
+        }
+
+        @include mixins.media(md) { // Tablet
+          justify-content: flex-end;
+
+          & .icon__menu {
+            @include mixins.toRem('width', 20);
+            @include mixins.toRem('height', 20);
+            cursor: pointer;
+            
+            &:last-child {
+              display: none;
+            }
+          }
+        }
       }
     }
   }

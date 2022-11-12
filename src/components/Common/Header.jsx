@@ -48,18 +48,14 @@ export const Header = () => {
             <img src={Logo} alt="logo vaseprint" />
           </figure>
           <div className="content__search">
-            <IoSearchOutline className='search__icon' size={'12px'} />
-            <input className="searcher" type="text" placeholder='| Busca tus productos' />
+            <IoSearchOutline className='search__icon' />
+            <input className="searcher" type="text" placeholder='Busca tus productos' />
           </div>
           <div className='content__icons'>
-            <FaUserAlt 
-              style={{ cursor: 'pointer' }}
-            />
-            <FaShoppingCart 
-              style={{ cursor: 'pointer' }}
-            />
+            <FaUserAlt className='icon__menu'/>
+            <FaShoppingCart className='icon__menu'/>
             <GiHamburgerMenu 
-              style={{ cursor: 'pointer' }}
+              className='icon__menu'
               onClick={() => { setShowNavbar(!showNavbar) }}
             />
           </div>
