@@ -11,6 +11,7 @@ import Genius from '../assets/images/logo-genius.png';
 import Logitech from '../assets/images/logo-logitech.png';
 import Kingston from '../assets/images/logo-kingston.png';
 import LogoEpson from '../assets/images/logo-epson.png';
+import { Footer } from "../components/common/Footer";
 
 const products = [
   { price: 22000, title: 'Mouse Genius DX-120 USB', img: Mouse },
@@ -89,7 +90,7 @@ export const Home = () => {
               </figure>
             ))}
           </section>
-        </main>
+        </main>        
       </div>
     </>
   )

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 
-import { Header } from "../components";
+import { Header, Footer } from "../components";
 
 export const AppRoutes = () => {
   return (
@@ -8,6 +8,8 @@ export const AppRoutes = () => {
       <Header />
 
       <Outlet />
+
+      <Footer />
     </>
   )
 }
