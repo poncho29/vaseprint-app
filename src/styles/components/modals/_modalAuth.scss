@@ -1,0 +1,36 @@
+@use '../../base/mixins';
+
+.modal__auth {  
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba($color: #000000, $alpha: .75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.isOpen {
+    display: flex;
+  }
+
+  .auth__ctn {
+    position: relative;
+    min-width: 320px;
+    max-width: 480px;
+    min-height: 200px;
+    max-height: 600px;
+    // overflow-y: auto;
+    padding: 1rem;
+    background-color: var(--white);
+
+    .auth__close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+    }
+  }
+}
