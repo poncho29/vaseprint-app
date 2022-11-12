@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 
+import { AiFillCloseSquare } from 'react-icons/ai';
+
 export const Navbar = ({ showNavbar, showMenu }) => {
 
   // const onLogout = () => {
@@ -15,7 +17,7 @@ export const Navbar = ({ showNavbar, showMenu }) => {
           className='menu__btn'
           onClick={showMenu}
         >
-          X
+          <AiFillCloseSquare size={24} />
         </button>
 
         <div className='menu__links'>
