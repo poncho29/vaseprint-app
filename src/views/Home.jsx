@@ -1,4 +1,7 @@
-import { Slideshow } from "../components"
+import { useState, useEffect } from "react";
+import api from "./../api/axios.config";
+import { getProducts } from "../services/product";
+import { Slideshow } from "../components";
 
 import Card from "../components/common/Card";
 import { CardTip } from "../components/home/CardTip";
@@ -11,7 +14,6 @@ import Genius from '../assets/images/logo-genius.png';
 import Logitech from '../assets/images/logo-logitech.png';
 import Kingston from '../assets/images/logo-kingston.png';
 import LogoEpson from '../assets/images/logo-epson.png';
-import { Footer } from "../components/common/Footer";
 
 const products = [
   { price: 22000, title: 'Mouse Genius DX-120 USB', img: Mouse },
@@ -35,6 +37,20 @@ const brands = [
 ]
 
 export const Home = () => {
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    const getAllProducts = async() => {
+      const data = await getProducts();
+      if (data.err) return alert(data.err)
+
+      console.log(data);
+      setProducts(data.products);
+    }
+
+    getAllProducts();
+  }, []);  
+
   return (
     <>
       <div className="container">
@@ -47,12 +63,12 @@ export const Home = () => {
         <main className='home-main'>
           <h2 className='home-title'>Productos Destacados</h2>
           <section className='home-products'>
-            {products.map((card, i) => (
+            {products && products.map((prod, i) => (
               <Card
-                key={i}
-                url={card.img}
-                title={card.title}
-                price={card.price}
+                key={prod.id}
+                url={Mouse}
+                title={prod.name}
+                price={prod.price}
               />
             ))}
           </section>
