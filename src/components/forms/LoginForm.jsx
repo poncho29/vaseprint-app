@@ -57,7 +57,6 @@ const LoginForm = () => {
           <a href="">Olvide mi contraseña</a> 
         </p>
 
-
         <Button
           type="submit"
           text="Ingresar"
@@ -66,7 +65,7 @@ const LoginForm = () => {
         <span>o</span>
 
         <p className="link__register">
-          ¿No tienes cuenta?<a href="">Regístrate</a>
+          ¿No tienes cuenta? <a href="">Regístrate</a>
         </p>
       </div>
     </form>
