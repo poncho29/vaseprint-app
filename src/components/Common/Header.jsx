@@ -15,6 +15,7 @@ import { AiFillFacebook } from 'react-icons/ai';
 import { AiOutlineInstagram } from 'react-icons/ai';
 
 import Logo from '../../assets/images/logo.svg';
+import LoginForm from '../forms/LoginForm';
 
 export const Header = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -78,7 +79,7 @@ export const Header = () => {
         isOpen={isOpenAuth}
         closeModal={closeModalAuth}
       >
-        <h2>LOGIN</h2>
+        <LoginForm />
       </ModalAuth>
     </>
   )

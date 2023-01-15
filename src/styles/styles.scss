@@ -3,18 +3,25 @@
 
 // Layouts
 
-// Pages
+// PAGES
 @use './views/home';
 
-// Components
+// COMPONENTS
+@use './components/common/card';
+@use './components/common/button';
 @use './components/common/header';
 @use './components/common/navbar';
 @use './components/common/footer';
 @use './components/common/slideshow';
-@use './components/common/card';
 
+// Forms
+@use './components/forms/input';
+@use './components/forms/loginForm';
+
+// Home
 @use './components/home/cardTip';
 
+// Modals
 @use './components/modals/modalAuth';
 
-// Tools
+// TOOLS
