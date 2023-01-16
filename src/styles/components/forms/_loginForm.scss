@@ -1,9 +1,6 @@
 @use '../../base/mixins';
 
 .form__login {
-  width: 236px;
-  height: 256px;
-
   & .login__title {
     font-size: 14px;
     font-weight: 700;
@@ -29,7 +26,8 @@
       font-weight: 400;
       margin-bottom: .625rem;
 
-      & a {
+      & span {
+        cursor: pointer;
         color: var(--gray);
         text-decoration: underline;
       }
@@ -46,7 +44,8 @@
       font-size: 10px;
       font-weight: 400;
 
-      & a {
+      & span {
+        cursor: pointer;
         color: var(--gray);
         text-decoration: underline;
       }

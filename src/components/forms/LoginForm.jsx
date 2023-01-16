@@ -9,7 +9,7 @@ const initialValues = {
   password: ""
 }
 
-const LoginForm = () => {
+const LoginForm = ({ navigateModal }) => {
   const formik = useFormik({
     initialValues,
     validationSchema: Yup.object({
@@ -54,7 +54,7 @@ const LoginForm = () => {
 
       <div className="footer__login">
         <p className="link__forgot">
-          <a href="">Olvide mi contraseña</a> 
+          <span onClick={() => navigateModal('forgot')}>Olvide mi contraseña</span>
         </p>
 
         <Button
@@ -65,7 +65,8 @@ const LoginForm = () => {
         <span>o</span>
 
         <p className="link__register">
-          ¿No tienes cuenta? <a href="">Regístrate</a>
+          ¿No tienes cuenta?{" "}
+          <span onClick={() => navigateModal('register')}>Regístrate</span>
         </p>
       </div>
     </form>

@@ -14,16 +14,42 @@ import { IoSearchOutline } from 'react-icons/io5';
 import { AiFillFacebook } from 'react-icons/ai';
 import { AiOutlineInstagram } from 'react-icons/ai';
 
-import Logo from '../../assets/images/logo.svg';
 import LoginForm from '../forms/LoginForm';
+import ForgotForm from '../forms/ForgotForm';
+import RegisterForm from '../forms/RegisterForm';
+import Logo from '../../assets/images/logo.svg';
 
 export const Header = () => {
   const [showNavbar, setShowNavbar] = useState(false);
 
-  const [isOpenAuth, openModalAuth, closeModalAuth] = useModal(false);
+  const [isOpenLogin, openModalLogin, closeModalLogin] = useModal(false);
+  const [isOpenForgot, openModalForgot, closeModalForgot] = useModal(false);
+  const [isOpenRegister, openModalRegister, closeModalRegister] = useModal(false);
 
   const showMenu = () => {
     setShowNavbar(!showNavbar);
+  }
+
+  const navigateModal = (name) => {
+    switch (name) {
+      case 'login':
+        closeModalRegister();
+        openModalLogin();
+        break;
+      case 'register':
+        closeModalLogin();
+        openModalRegister();
+        break;
+      case 'forgot':
+        closeModalLogin();
+        openModalForgot();
+        break;
+      case 'remember':
+        closeModalForgot();
+        openModalLogin();
+        break
+      default: return;
+    }
   }
 
   return (
@@ -59,7 +85,7 @@ export const Header = () => {
               <input className="searcher" type="text" placeholder='Busca tus productos' />
             </div>
             <div className='content__icons'>
-              <FaUserAlt className='icon__menu' onClick={openModalAuth}/>
+              <FaUserAlt className='icon__menu' onClick={openModalLogin}/>
               <FaShoppingCart className='icon__menu'/>
               <GiHamburgerMenu 
                 className='icon__menu'
@@ -75,11 +101,24 @@ export const Header = () => {
         </section>
       </header>
 
+      {/* Modals Auth */}
       <ModalAuth
-        isOpen={isOpenAuth}
-        closeModal={closeModalAuth}
+        isOpen={isOpenLogin}
+        closeModal={closeModalLogin}       
       >
-        <LoginForm />
+        <LoginForm navigateModal={navigateModal} />
+      </ModalAuth>
+      <ModalAuth
+        isOpen={isOpenRegister}
+        closeModal={closeModalRegister}
+      >
+        <RegisterForm navigateModal={navigateModal} />
+      </ModalAuth>
+      <ModalAuth
+        isOpen={isOpenForgot}
+        closeModal={closeModalForgot}
+      >
+        <ForgotForm navigateModal={navigateModal} />
       </ModalAuth>
     </>
   )

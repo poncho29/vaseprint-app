@@ -17,6 +17,8 @@
 // Forms
 @use './components/forms/input';
 @use './components/forms/loginForm';
+@use './components/forms/registerForm';
+@use './components/forms/forgotForm';
 
 // Home
 @use './components/home/cardTip';

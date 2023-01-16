@@ -12,7 +12,8 @@ const Input = ({
   showLogo = false,
   required = false,
   onChange = () => {},
-  error = ''
+  error = '',
+  ...props
 }) => {
   const [showPass, setShowPass] = useState(false);
 
@@ -32,6 +33,7 @@ const Input = ({
           onChange={onChange}
           required={required}
           className={`input ${className}`}
+          {...props}
         />
         {/* ERRORS */}
         { error && <span className='input__error'>{error}</span>}
