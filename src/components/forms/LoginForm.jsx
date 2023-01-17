@@ -1,8 +1,11 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { useContext, useState } from 'react';
 
 import Input from './Input';
 import Button from '../common/Button';
+import { login } from '../../services/auth';
+import { AuthContext } from '../../context/authContext/AuthContext';
 
 const initialValues = {
   email: "",
@@ -10,6 +13,9 @@ const initialValues = {
 }
 
 const LoginForm = ({ navigateModal }) => {
+  const [loading, setLoading] = useState(false);
+  const { login: loginAuth } = useContext(AuthContext);
+
   const formik = useFormik({
     initialValues,
     validationSchema: Yup.object({
@@ -18,8 +24,14 @@ const LoginForm = ({ navigateModal }) => {
       password: Yup.string()
         .min(8, 'Debe tener mínimo 8 caracteres').required('Requerido'),
     }),
-    onSubmit: values => {
-      console.log(values);
+    onSubmit: async (values) => {
+      setLoading(true);
+      // console.log(values);
+
+      loginAuth(values)
+      // const resp = await login(values);
+      // console.log(resp);
+      setLoading(false);
     }
   });
   
@@ -60,6 +72,7 @@ const LoginForm = ({ navigateModal }) => {
         <Button
           type="submit"
           text="Ingresar"
+          loading={loading}
         />
 
         <span>o</span>

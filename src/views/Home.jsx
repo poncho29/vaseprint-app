@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import api from "./../api/axios.config";
 import { getProducts } from "../services/product";
 import { Slideshow } from "../components";
 
@@ -44,7 +43,7 @@ export const Home = () => {
       const data = await getProducts();
       if (data.err) return alert(data.err)
 
-      console.log(data);
+      // console.log(data);
       setProducts(data.products);
     }
 
@@ -60,7 +59,7 @@ export const Home = () => {
           message={false}
         />
 
-        <main className='home-main'>
+        <main className='home-main'>         
           <h2 className='home-title'>Productos Destacados</h2>
           <section className='home-products'>
             {products && products.map((prod, i) => (

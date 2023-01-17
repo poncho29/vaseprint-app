@@ -1,12 +1,14 @@
 import * as Yup from 'yup';
+import { useState } from 'react';
 import { useFormik } from 'formik';
+import toast, { Toaster } from 'react-hot-toast';
 
 import Input from "./Input";
 import Button from '../common/Button';
+import { createUser } from '../../services/auth';
 
 const initialValues = {
   name: "",
-  // lastname: "",
   emailReg: "",
   phone: "",
   pass: "",
@@ -14,12 +16,17 @@ const initialValues = {
 }
 
 const RegisterForm = ({ navigateModal }) => {
+  const [loading, setLoading] = useState(false);
+
   const formikReg = useFormik({
     initialValues,
     validationSchema: Yup.object({
       name: Yup.string().required('Requerido'),
-      // lastname: Yup.string().required('Requerido'),
-      phone: Yup.number().required('Requerido'),
+      phone: Yup.string()
+        .required('Requerido')
+        .matches(/^[0-9]+$/, "Deben ser solo números")
+        .min(10, 'Debe tener 10 caracteres')
+        .max(10, 'Debe tener 10 caracteres'),
       emailReg: Yup.string()
         .email('Dirección de correo electrónico no válida').required('Requerido'),
       pass: Yup.string()
@@ -27,11 +34,13 @@ const RegisterForm = ({ navigateModal }) => {
       passConfirm: Yup.string()
         .min(8, 'Debe tener mínimo 8 caracteres').required('Requerido'),
     }),
-    onSubmit: values => {
+    onSubmit: async (values) => {
+      setLoading(true);
       const { pass, passConfirm, ...data } = values;
 
       if (pass !== passConfirm) {
-        alert("Las contraseñas no coinciden");
+        toast.error("Las contraseñas no coinciden");
+        setLoading(false);
         return;
       }
 
@@ -42,16 +51,31 @@ const RegisterForm = ({ navigateModal }) => {
           email: data.emailReg,
           password: pass,
           state: true,
-          role: 2
+          roleId: 2
         }
       }
 
-      console.log(newUser);
+      const resp = await createUser(newUser);
+      setLoading(false);
+
+      if (resp.errors) {
+        resp.errors.forEach((err) => {
+          toast.error(err.msg);
+        });
+        return;
+      }
+
+      toast.success(resp.msg);
+      formikReg.handleReset();
+      setTimeout(() => {
+        navigateModal('login');
+      }, 1000);
     }
   });
 
   return (
     <form onSubmit={formikReg.handleSubmit} className="form__register">
+      <Toaster position="top-right" reverseOrder={true} />
       <div className="register__header">
         <h3 className="register__title">REGISTRO</h3>
         <span className="register__message">Campo obligatorio *</span>
@@ -69,17 +93,6 @@ const RegisterForm = ({ navigateModal }) => {
         error={formikReg.errors.name}
       />
 
-      {/* <Input
-        id="lastname"
-        name="lastname"
-        type="text"
-        label="Apellidos *"
-        required={true}
-        value={formikReg.values.lastname}
-        onChange={formikReg.handleChange}
-        error={formikReg.errors.lastname}
-      /> */}
-
       <Input
         id="emailReg"
         name="emailReg"
@@ -94,7 +107,7 @@ const RegisterForm = ({ navigateModal }) => {
       <Input
         id="phone"
         name="phone"
-        type="number"
+        type="text"
         label="Celular *"
         required={true}
         value={formikReg.values.phone}
@@ -132,6 +145,7 @@ const RegisterForm = ({ navigateModal }) => {
         <Button
           type="submit"
           text="Registrarme"
+          loading={loading}
         />
         <p className="link__login">
           ¿No tienes cuenta?{" "}

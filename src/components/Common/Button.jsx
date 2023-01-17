@@ -1,10 +1,12 @@
 import React from 'react'
+import Spinner from './Spinner'
 
 const Button = ({
   text = 'save',
   disabled = false,
   type = 'button' | 'submit' | 'reset',
   variant = false,
+  loading = false,
   onClick = () => {}
 }) => {
   return (
@@ -12,9 +14,17 @@ const Button = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`btn_component ${variant ? 'bg__secundary': '' }`}
+      className={`
+        btn_component 
+        ${variant ? 'bg__secundary': '' }
+        ${loading ? 'loading': '' }
+      `}
     >
       {text}
+      {
+        loading &&
+          <Spinner size="20px" />
+      }
     </button>
   )
 }
