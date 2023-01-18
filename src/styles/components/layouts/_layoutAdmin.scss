@@ -1,0 +1,15 @@
+.admin__container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  & .admin__sidebar {
+    width: 20%;
+  }
+
+  & .admin__main {
+    width: 80%;
+  }
+}

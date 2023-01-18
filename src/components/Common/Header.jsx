@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { useModal } from '../../hooks/useModal';
+import { useAuth, useModal } from '../../hooks';
 
 import { Navbar } from './Navbar';
 import { ModalAuth } from '../modals/ModalAuth';
+
+import LoginForm from '../forms/LoginForm';
+import ForgotForm from '../forms/ForgotForm';
+import RegisterForm from '../forms/RegisterForm';
 
 import { FiMail } from 'react-icons/fi';
 import { FaUserAlt } from 'react-icons/fa';
@@ -13,18 +17,23 @@ import { TbBrandWhatsapp } from 'react-icons/tb';
 import { IoSearchOutline } from 'react-icons/io5';
 import { AiFillFacebook } from 'react-icons/ai';
 import { AiOutlineInstagram } from 'react-icons/ai';
+import { IoLogOutSharp } from 'react-icons/io5';
 
-import LoginForm from '../forms/LoginForm';
-import ForgotForm from '../forms/ForgotForm';
-import RegisterForm from '../forms/RegisterForm';
 import Logo from '../../assets/images/logo.svg';
 
 export const Header = () => {
+  const { user, logout } = useAuth();
   const [showNavbar, setShowNavbar] = useState(false);
 
   const [isOpenLogin, openModalLogin, closeModalLogin] = useModal(false);
   const [isOpenForgot, openModalForgot, closeModalForgot] = useModal(false);
   const [isOpenRegister, openModalRegister, closeModalRegister] = useModal(false);
+
+  // useEffect(() => {
+  //   if (user) {
+
+  //   }
+  // }, [user])
 
   const showMenu = () => {
     setShowNavbar(!showNavbar);
@@ -85,6 +94,7 @@ export const Header = () => {
               <input className="searcher" type="text" placeholder='Busca tus productos' />
             </div>
             <div className='content__icons'>
+              { user && <IoLogOutSharp className='icon__menu' size={22} onClick={logout} /> }              
               <FaUserAlt className='icon__menu' onClick={openModalLogin}/>
               <FaShoppingCart className='icon__menu'/>
               <GiHamburgerMenu 
