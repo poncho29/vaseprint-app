@@ -106,7 +106,7 @@ export const Header = () => {
         isOpen={isOpenLogin}
         closeModal={closeModalLogin}       
       >
-        <LoginForm navigateModal={navigateModal} />
+        <LoginForm navigateModal={navigateModal} closeModal={closeModalLogin} />
       </ModalAuth>
       <ModalAuth
         isOpen={isOpenRegister}

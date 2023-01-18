@@ -1,11 +1,12 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import toast, { Toaster } from 'react-hot-toast';
+
+import { useAlert } from '../../hooks';
+import { createUser } from '../../services/auth';
 
 import Input from "./Input";
 import Button from '../common/Button';
-import { createUser } from '../../services/auth';
 
 const initialValues = {
   name: "",
@@ -16,6 +17,7 @@ const initialValues = {
 }
 
 const RegisterForm = ({ navigateModal }) => {
+  const { toast } = useAlert();
   const [loading, setLoading] = useState(false);
 
   const formikReg = useFormik({
@@ -67,15 +69,14 @@ const RegisterForm = ({ navigateModal }) => {
 
       toast.success(resp.msg);
       formikReg.handleReset();
-      setTimeout(() => {
-        navigateModal('login');
-      }, 1000);
+      navigateModal('login');
+      // setTimeout(() => {
+      // }, 1000);
     }
   });
 
   return (
-    <form onSubmit={formikReg.handleSubmit} className="form__register">
-      <Toaster position="top-right" reverseOrder={true} />
+    <form onSubmit={formikReg.handleSubmit} className="form__register">     
       <div className="register__header">
         <h3 className="register__title">REGISTRO</h3>
         <span className="register__message">Campo obligatorio *</span>

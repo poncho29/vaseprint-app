@@ -1,20 +1,21 @@
 import * as Yup from 'yup';
+import { useState } from 'react';
 import { useFormik } from 'formik';
-import { useContext, useState } from 'react';
 
 import Input from './Input';
 import Button from '../common/Button';
 import { login } from '../../services/auth';
-import { AuthContext } from '../../context/authContext/AuthContext';
+import { useAuth, useAlert } from '../../hooks';
 
 const initialValues = {
   email: "",
   password: ""
 }
 
-const LoginForm = ({ navigateModal }) => {
+const LoginForm = ({ navigateModal, closeModal }) => {
+  const { toast } = useAlert();
+  const { login: loginAuth } = useAuth();
   const [loading, setLoading] = useState(false);
-  const { login: loginAuth } = useContext(AuthContext);
 
   const formik = useFormik({
     initialValues,
@@ -26,12 +27,19 @@ const LoginForm = ({ navigateModal }) => {
     }),
     onSubmit: async (values) => {
       setLoading(true);
-      // console.log(values);
 
-      loginAuth(values)
-      // const resp = await login(values);
-      // console.log(resp);
-      setLoading(false);
+      const data = await login(values);
+      setLoading(false);      
+
+      if (data.status === 400) {
+        toast.error(data.msg);
+        return;
+      }
+
+      loginAuth(data);     
+      toast.success('Has iniciado sesión correctamente');
+      formik.handleReset();
+      closeModal();
     }
   });
   
