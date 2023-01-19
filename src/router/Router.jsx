@@ -4,6 +4,9 @@ import { AppRoutes } from "./AppRoutes";
 import { AdminRoutes } from "./AdminRoutes";
 import { Home, About, Blog } from '../views'
 import AdminProducts from "../views/admin/AdminProducts";
+import AdminUser from "../views/admin/AdminUser";
+import AdminTips from "../views/admin/AdminTips";
+import AdminBlog from "../views/admin/AdminBlog";
 
 export const Router = () => {
   return (
@@ -18,7 +21,10 @@ export const Router = () => {
         </Route>
 
         <Route path="/admin" element={<AdminRoutes />}>
-          <Route index element={<AdminProducts />} />
+          <Route index element={<AdminUser />} />
+          <Route path="products" element={<AdminProducts />} />
+          <Route path="tips" element={<AdminTips />} />
+          <Route path="blog" element={<AdminBlog />} />
         </Route>
 
         <Route path="/*" element={<Navigate to='/' />} />
