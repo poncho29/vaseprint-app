@@ -5,6 +5,7 @@
 
 // PAGES
 @use './views/home';
+@use './views/admin/adminUser';
 
 // COMPONENTS
 @use './components/common/card';
@@ -23,6 +24,9 @@
 
 // Home
 @use './components/home/cardTip';
+
+// Admin
+
 
 // Layouts
 @use './components/layouts/layoutAdmin';
