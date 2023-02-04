@@ -149,7 +149,7 @@ const RegisterForm = ({ navigateModal }) => {
           loading={loading}
         />
         <p className="link__login">
-          ¿No tienes cuenta?{" "}
+          ¿Ya tienes cuenta?{" "}
           <span onClick={() => navigateModal('login')}>Inicia sesión</span>
         </p>
       </div>

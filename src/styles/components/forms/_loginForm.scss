@@ -6,11 +6,22 @@
     font-weight: 700;
     line-height: 12px;
     margin-bottom: 10px;
+
+    // Tablet
+    @include mixins.media(md) {
+      font-size: 1.25rem;
+      margin-bottom: .875rem;
+    }
   }
 
   & .login__subtitle {
     font-size: 10px;
     margin-bottom: 22px;
+
+    // Tablet
+    @include mixins.media(md) {
+      font-size: 1rem;
+    }
   }
 
   // Footer
@@ -21,15 +32,20 @@
     width: 100%;
     margin-top: 15px;
 
-    & .link__forgot {      
-      font-size: 10px;
+    & .link__forgot {            
       font-weight: 400;
       margin-bottom: .625rem;
 
       & span {
         cursor: pointer;
+        font-size: 10px;
         color: var(--gray);
         text-decoration: underline;
+
+        // Tablet
+        @include mixins.media(md) {
+          font-size: 14px;
+        }
       }
     }
 
@@ -37,17 +53,33 @@
       color: var(--gray);
       font-size: 10px;
       margin: 5px 0;
+
+      // Tablet
+      @include mixins.media(md) {
+        font-size: 14px;
+      }
     }
 
     & .link__register {
       color: var(--gray);
-      font-size: 10px;
       font-weight: 400;
+      font-size: 10px;
+
+      // Tablet
+      @include mixins.media(md) {
+        font-size: 14px;
+      }
 
       & span {
         cursor: pointer;
         color: var(--gray);
+        font-size: 10px;
         text-decoration: underline;
+
+        // Tablet
+        @include mixins.media(md) {
+          font-size: 14px;
+        }
       }
     }
   }

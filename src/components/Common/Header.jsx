@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { useAuth, useModal } from '../../hooks';
 
@@ -28,12 +28,6 @@ export const Header = () => {
   const [isOpenLogin, openModalLogin, closeModalLogin] = useModal(false);
   const [isOpenForgot, openModalForgot, closeModalForgot] = useModal(false);
   const [isOpenRegister, openModalRegister, closeModalRegister] = useModal(false);
-
-  // useEffect(() => {
-  //   if (user) {
-
-  //   }
-  // }, [user])
 
   const showMenu = () => {
     setShowNavbar(!showNavbar);
@@ -94,8 +88,8 @@ export const Header = () => {
               <input className="searcher" type="text" placeholder='Busca tus productos' />
             </div>
             <div className='content__icons'>
-              { user && <IoLogOutSharp className='icon__menu' size={22} onClick={logout} /> }              
-              <FaUserAlt className='icon__menu' onClick={openModalLogin}/>
+              { user && <IoLogOutSharp className='icon__menu' size={24} onClick={logout} /> }              
+              { !user && <FaUserAlt className='icon__menu' onClick={openModalLogin}/> }              
               <FaShoppingCart className='icon__menu'/>
               <GiHamburgerMenu 
                 className='icon__menu'
