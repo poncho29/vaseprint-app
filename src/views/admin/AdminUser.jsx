@@ -6,19 +6,19 @@ const dataUser = [
     id: 1,
     name: 'sebastian',
     email: 'sebastian@gmail.com',
-    role: 'admin'
+    role: 'admin',
   },
   {
     id: 2,
     name: 'Jesus',
     email: 'jesus@gmail.com',
-    role: 'admin'
+    role: 'admin',
   },
   {
     id: 3,
     name: 'laura',
     email: 'laura@gmail.com',
-    role: 'admin'
+    role: 'admin',
   }
 ]
 
@@ -40,7 +40,7 @@ const AdminUser = () => {
       {/* <div className="user__filters">
         <h2>Filtros</h2>
       </div> */}
-
+    
       <AdminTable
         data={dataUser}
         renderTableRowHeader={['id', 'name', 'email', 'role']}

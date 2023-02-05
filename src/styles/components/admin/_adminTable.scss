@@ -1,0 +1,40 @@
+.content__table {
+  width: 100%;
+  overflow: scroll;
+  
+  .admin__table {
+    width: 100%;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 20px;
+  
+    & thead {
+      & .tr__labels {
+        & th {
+          padding: 1rem;
+          border: 1px solid black;
+        }      
+      }
+    }
+  
+    & tbody {
+      & .tr__data {
+        & td {
+          padding: 1rem;
+          border: 1px solid black;
+  
+          &:first-child {
+            text-align: center;
+          }
+          
+          & .td__actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+          }
+        }
+  
+      }
+    }
+  }
+}
