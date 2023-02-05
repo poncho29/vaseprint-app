@@ -1,5 +1,6 @@
-import React from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import AdminTable from '../../components/admin/AdminTable'
+import { getUsers } from '../../services/users';
 
 const dataUser = [
   {
@@ -23,6 +24,36 @@ const dataUser = [
 ]
 
 const AdminUser = () => {
+  const [users, setUsers] = useState([]);
+
+  // const usersCallback = useCallback(() => getUsers(), []);
+
+  useEffect(() => {
+    const getAllUsers = async () => {
+      try {
+        const data = await getUsers();
+        console.log(users);
+
+        const newUsers = data.users.map((user) => {
+          const { roleId, ...rest } = user;
+
+          const newUser = {
+            ...rest,
+            role: roleId
+          }
+
+          return newUser
+        })
+
+        setUsers(newUsers);       
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getAllUsers()
+  }, []);
+
   const editUser = (user) => {
     console.log(user)
   }
@@ -42,8 +73,9 @@ const AdminUser = () => {
       </div> */}
     
       <AdminTable
-        data={dataUser}
-        renderTableRowHeader={['id', 'name', 'email', 'role']}
+        data={users}
+        userTable
+        renderTableRowHeader={['id', 'email', 'role']}
         onEdit={editUser}
         onView={viewUser}
         onDelete={deleteUser}

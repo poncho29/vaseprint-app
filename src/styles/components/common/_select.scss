@@ -1,0 +1,19 @@
+.select__ctn {
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  
+  & .select__component {
+    width: 100%;        
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--black);
+    background-color: var(--white);
+  }
+
+  & .select__arrow {
+    top: 12px;
+    right: 1rem;
+    position: absolute;
+  }
+}

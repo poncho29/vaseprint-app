@@ -2,7 +2,8 @@ import React from 'react';
 
 import { capitalize } from '../../utils/capitalize';
 
-import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEye, FaEdit, FaTrash, FaAngleDown, FaAngleUp } from 'react-icons/fa';
+import Select from '../common/Select';
 
 const IconActions = [
   {
@@ -21,6 +22,7 @@ const IconActions = [
 
 const AdminTable = ({
   data = [],
+  userTable = false,
   renderTableRowHeader = [],
   actionsIcons = IconActions,
   showActionColumnHeader = true,
@@ -29,10 +31,21 @@ const AdminTable = ({
   onEdit = (e) => {},
   onDelete = (e) => {},
 }) => {
-  // console.log(data)
+  const handlerFilter = (e) => {
+    console.log(e)
+  }
 
   return (
     <div className='content__table'>
+      <section className='filter__table'>
+        <Select
+          id='filter'
+          name='filter'
+          options={renderTableRowHeader}
+          handlerChange={handlerFilter}
+        />
+      </section>
+
       <table className='admin__table'>
         <thead>
           <tr className='tr__labels'>
@@ -49,10 +62,21 @@ const AdminTable = ({
           {
             data.map((item) => (
               <tr className='tr__data' key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.role}</td>
+                {
+                  renderTableRowHeader.map((field, idx) => {
+                    if (userTable && field === 'role') {
+                      const rolValue = item[field] === 1 
+                        ? 'Admin' : item[field] === 2 
+                        ? 'Cliente' : 'Usuario'
+                      
+                      return <td key={idx}>{rolValue}</td>
+                    }
+
+                    const value = item[field];
+
+                    return <td key={idx}>{value}</td>
+                  })
+                }
                 { showActionColumnHeader && 
                   <td>
                     <div className='td__actions'>

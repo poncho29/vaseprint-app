@@ -1,8 +1,33 @@
 .content__table {
   width: 100%;
   overflow: scroll;
+
+  & .filter__table {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    // & .select__ctn {
+    //   width: inherit;
+    //   max-width: 300px;
+    //   position: relative;
+      
+    //   & .select__component {
+    //     width: 100%;        
+    //     padding: 8px 16px;
+    //     border-radius: 10px;
+    //     border: 1px solid var(--black);
+    //     background-color: var(--white);
+    //   }
   
-  .admin__table {
+    //   & .select__arrow {
+    //     top: 12px;
+    //     right: 1rem;
+    //     position: absolute;
+    //   }
+    // }
+  }
+
+  & .admin__table {
     width: 100%;
     height: auto;
     border: 1px solid black;

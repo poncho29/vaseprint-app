@@ -70,8 +70,6 @@ const RegisterForm = ({ navigateModal }) => {
       toast.success(resp.msg);
       formikReg.handleReset();
       navigateModal('login');
-      // setTimeout(() => {
-      // }, 1000);
     }
   });
 
