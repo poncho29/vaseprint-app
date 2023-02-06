@@ -24,11 +24,12 @@ const IconActions = [
 
 const AdminTable = ({
   data = [],
-  searchText = '',
-  selectValue = '',
+  searchText = "",
+  selectValue = "",
   userTable = false,
   currentPage = 0,
   totalPages = 0,
+  showSelect = false,
   renderTableRowHeader = [],
   actionsIcons = IconActions,
   showActionColumnHeader = true,
@@ -39,8 +40,8 @@ const AdminTable = ({
   onDelete = (e) => {},
   onSelect = (e) => {},
   onSearch = (e) => {},
-  onNextPage = (currentPage) => {},
-  onPreviusPage = (currentPage) => {},
+  onNextPage = (e) => {},
+  onPreviusPage = (e) => {},
 }) => {
   return (
     <div className='content__table'>
@@ -50,21 +51,24 @@ const AdminTable = ({
             showSearch
             id='search'
             name='search'
-            value={searchText}
             sizeLogo={16}
+            placeholder='Buscar por email'
+            value={searchText}
             onChange={({ target }) => {
               onSearch(target.value)
             }}
           />
-          <Select
-            id='filter'
-            name='filter'
-            value={selectValue}
-            options={renderTableRowHeader}
-            handlerChange={(value) => {
-              onSelect(value)
-            }}
-          />
+          { showSelect &&
+            <Select
+              id='filter'
+              name='filter'
+              value={selectValue}
+              options={renderTableRowHeader}
+              handlerChange={(value) => {
+                onSelect(value)
+              }}
+            />
+          }
         </div>
         <div className='buttons__group'>
           <button

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { getUsers } from '../../services/users';
 
@@ -18,6 +18,7 @@ const AdminUser = () => {
   // Hooks
   const { currentPage, handleNextPage, handlePreviusPage, setLastPage } = usePagination(1);
 
+  // Effects
   useEffect(() => {
     const getAllUsers = async () => {
       try {
@@ -25,7 +26,6 @@ const AdminUser = () => {
         const maxPages = Math.ceil(data.count / limit);
         setTotalPages(maxPages);
         setLastPage(maxPages);
-        console.log(data);
 
         const newUsers = data.users.map((user) => {
           const { roleId, ...rest } = user;
@@ -46,7 +46,34 @@ const AdminUser = () => {
 
     getAllUsers()
   }, [currentPage]);
+  
+  // Memos
+  const usersFiltered = useMemo(() => {
+    let resultData = users;
 
+    // Filter by search
+    if (searchText) {
+      const dataBySearch = resultData.filter(user => {
+        if (user.email.toLowerCase().trim().includes(searchText.toLowerCase().trim())) {
+          return user;
+        }
+
+        if ((searchText.toLocaleLowerCase().includes('admin'))) {
+          return user.role === 1;
+        };
+
+        if ((searchText.toLocaleLowerCase().includes('cliente'))) {
+          return user.role === 2;
+        };
+      });
+
+      resultData = dataBySearch;
+    }
+
+    return resultData;
+  }, [users, searchText]);
+
+  // Functions
   const handlerEdit = (user) => {
     console.log(user)
   }
@@ -67,7 +94,7 @@ const AdminUser = () => {
     <div className="user__container">
       <AdminTable
         userTable
-        data={users}
+        data={usersFiltered}
         searchText={searchText}
         selectValue={selectValue}
         totalPages={totalPage}

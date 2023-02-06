@@ -10,6 +10,7 @@ const InputSearch = ({
   sizeLogo = 20,
   required = false,
   showSearch = false,
+  placeholder = 'Buscar',
   onChange = (e) => {},
   ...props
 }) => {
@@ -26,6 +27,7 @@ const InputSearch = ({
         name={name}
         value={value}
         required={required}
+        placeholder={placeholder}
         className={`inputSearch ${className}`}
         {...props}
         onChange={onChange}

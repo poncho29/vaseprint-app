@@ -26,6 +26,7 @@ const Select = ({
         }}
         }
       >
+        <option value="">Selecione un opción</option>
         {options.map((item, idx) => (
           <option
             key={idx}
