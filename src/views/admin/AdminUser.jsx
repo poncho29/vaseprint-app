@@ -1,40 +1,31 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import AdminTable from '../../components/admin/AdminTable'
+import { useEffect, useState } from 'react'
+
 import { getUsers } from '../../services/users';
 
-const dataUser = [
-  {
-    id: 1,
-    name: 'sebastian',
-    email: 'sebastian@gmail.com',
-    role: 'admin',
-  },
-  {
-    id: 2,
-    name: 'Jesus',
-    email: 'jesus@gmail.com',
-    role: 'admin',
-  },
-  {
-    id: 3,
-    name: 'laura',
-    email: 'laura@gmail.com',
-    role: 'admin',
-  }
-]
+import { usePagination } from '../../hooks/UsePagination';
+
+import AdminTable from '../../components/admin/AdminTable'
+
+const limit = 5;
 
 const AdminUser = () => {
+  // States
   const [users, setUsers] = useState([]);
+  const [totalPage, setTotalPages] = useState(1);
   const [searchText, setSearchText] = useState('');
   const [selectValue , setSelectValue] = useState('');
 
-  // const usersCallback = useCallback(() => getUsers(), []);
+  // Hooks
+  const { currentPage, handleNextPage, handlePreviusPage, setLastPage } = usePagination(1);
 
   useEffect(() => {
     const getAllUsers = async () => {
       try {
-        const data = await getUsers();
-        console.log(users);
+        const data = await getUsers(currentPage, limit);
+        const maxPages = Math.ceil(data.count / limit);
+        setTotalPages(maxPages);
+        setLastPage(maxPages);
+        console.log(data);
 
         const newUsers = data.users.map((user) => {
           const { roleId, ...rest } = user;
@@ -54,7 +45,7 @@ const AdminUser = () => {
     }
 
     getAllUsers()
-  }, []);
+  }, [currentPage]);
 
   const handlerEdit = (user) => {
     console.log(user)
@@ -79,6 +70,8 @@ const AdminUser = () => {
         data={users}
         searchText={searchText}
         selectValue={selectValue}
+        totalPages={totalPage}
+        currentPage={currentPage}
         renderTableRowHeader={['id', 'email', 'role']}
         onAdd={handlerAdd}
         onEdit={handlerEdit}
@@ -86,6 +79,8 @@ const AdminUser = () => {
         onDelete={handlerView}
         onSearch={(e) => setSearchText(e)}
         onSelect={(e) => setSelectValue(e)}
+        onNextPage={() => handleNextPage()}
+        onPreviusPage={() => handlePreviusPage()}
       />
     </div>
   )

@@ -4,6 +4,12 @@
   width: 100%;
   overflow-x: scroll;
 
+  @include mixins.media(md) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   // Filters y Buttons
   & .filter__table {
     display: flex;
@@ -62,6 +68,7 @@
     height: auto;
     border: 1px solid black;
     border-radius: 20px;
+    margin-bottom: 1rem;
   
     & thead {
       & .tr__labels {
@@ -90,6 +97,19 @@
         }
   
       }
+    }
+  }
+
+  // Pagination
+  & .pagination__table {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    & .pagination__text {
+      font-size: 18px;
+      font-weight: bold;
     }
   }
 }

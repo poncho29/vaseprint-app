@@ -5,7 +5,7 @@ import { capitalize } from '../../utils/capitalize';
 import Select from '../forms/Select';
 import InputSearch from '../forms/InputSearch';
 
-import { FaEye, FaEdit, FaTrash, FaPlusCircle } from 'react-icons/fa';
+import { FaEye, FaEdit, FaTrash, FaPlusCircle, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 const IconActions = [
   {
@@ -27,6 +27,8 @@ const AdminTable = ({
   searchText = '',
   selectValue = '',
   userTable = false,
+  currentPage = 0,
+  totalPages = 0,
   renderTableRowHeader = [],
   actionsIcons = IconActions,
   showActionColumnHeader = true,
@@ -36,7 +38,9 @@ const AdminTable = ({
   onEdit = (e) => {},
   onDelete = (e) => {},
   onSelect = (e) => {},
-  onSearch = (e) => {}
+  onSearch = (e) => {},
+  onNextPage = (currentPage) => {},
+  onPreviusPage = (currentPage) => {},
 }) => {
   return (
     <div className='content__table'>
@@ -127,6 +131,27 @@ const AdminTable = ({
           }
         </tbody>
       </table>
+
+      <section className='pagination__table'>
+        { currentPage > 1 ?
+            <FaAngleLeft
+              size={22}
+              className
+              onClick={() => {onPreviusPage(currentPage)}}
+            /> :
+            null
+        }
+        <span className='pagination__text'>
+          { currentPage } / { totalPages }
+        </span>
+        { currentPage !== totalPages ?
+            <FaAngleRight
+              size={22}
+              onClick={() => {onNextPage(currentPage)}}
+            /> :
+            null
+        }
+      </section>
     </div>
   )
 }
