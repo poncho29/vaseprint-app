@@ -6,6 +6,7 @@ import Select from '../forms/Select';
 import InputSearch from '../forms/InputSearch';
 
 import { FaEye, FaEdit, FaTrash, FaPlusCircle, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import Spinner from '../common/Spinner';
 
 const IconActions = [
   {
@@ -30,6 +31,7 @@ const AdminTable = ({
   currentPage = 0,
   totalPages = 0,
   showSelect = false,
+  loading = false,
   renderTableRowHeader = [],
   actionsIcons = IconActions,
   showActionColumnHeader = true,
@@ -44,7 +46,7 @@ const AdminTable = ({
   onPreviusPage = (e) => {},
 }) => {
   return (
-    <div className='content__table'>
+    <div className={`content__table ${loading && 'loading__table'}`}>
       <section className='filter__table'>
         <div className='filter__group'>
           <InputSearch
@@ -102,7 +104,7 @@ const AdminTable = ({
             { showActionColumnHeader && <th className='th__actions'>Actions</th> }          
           </tr>
         </thead>
-        <tbody>
+        <tbody>          
           {
             data.map((item) => (
               <tr className='tr__data' key={item.id}>
@@ -148,14 +150,14 @@ const AdminTable = ({
         <span className='pagination__text'>
           { currentPage } / { totalPages }
         </span>
-        { currentPage !== totalPages ?
+        { currentPage < totalPages ?
             <FaAngleRight
               size={22}
               onClick={() => {onNextPage(currentPage)}}
             /> :
             null
         }
-      </section>
+      </section>      
     </div>
   )
 }

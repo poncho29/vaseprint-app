@@ -4,7 +4,7 @@ export const createUser = async(user) => {
   const defError = 'Error creating user';
 
   try {
-    const { data } = await api.post("/persons", user);
+    const { data } = await api.post("/users", user);
     return data;
   } catch (error) {
     const { response } = error;
@@ -16,8 +16,8 @@ export const login = async(user) => {
   const defError = 'Surgio un error al iniciar sesión';
 
   try {
-    const { data } = await api.post("/auth/login", user);
-    return data;
+    const response = await api.post("/auth/login", user);
+    return response;
   } catch (error) {
     const { response } = error;
     return response || defError

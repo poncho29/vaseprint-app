@@ -49,17 +49,16 @@ const RegisterForm = ({ navigateModal }) => {
       const newUser = {
         name: data.name,
         phone: data.phone.toString(),
-        user: {
-          email: data.emailReg,
-          password: pass,
-          state: true,
-          roleId: 2
-        }
+        email: data.emailReg,
+        password: pass,
+        state: true,
+        roleId: 2
       }
 
       const resp = await createUser(newUser);
       setLoading(false);
 
+      console.log(resp);
       if (resp.errors) {
         resp.errors.forEach((err) => {
           toast.error(err.msg);

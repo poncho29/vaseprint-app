@@ -1,19 +1,22 @@
 import { useState, useCallback, useRef } from 'react';
 
-export const usePagination = (initialPage = 1, lastPage = 10) => {
-    const [currentPage, setCurrentPage] = useState(initialPage);
-
+export const usePagination = (initial = 0, offset = 0, lastPage = 10) => {
+    const [currentPage, setCurrentPage] = useState(initial);
+    const [viewPage, setViewPage] = useState(1);
+    
     const lastPageRef = useRef(lastPage);
 
     const handleNextPage = useCallback(() => {
-        const nextPage = currentPage + 1;
-        if(nextPage > lastPageRef.current) return 
-        setCurrentPage(nextPage)
+        const nextPage = currentPage + offset;
+        if (nextPage === lastPageRef.current) return 
+        setCurrentPage(nextPage);
+        setViewPage(viewPage + 1);
     }, [currentPage])
 
     const handlePreviusPage = useCallback(() => {
-        if(currentPage === 1) return
-        setCurrentPage(currentPage - 1)
+        if(currentPage === 0) return
+        setCurrentPage(currentPage - offset);
+        setViewPage(viewPage - 1);
     }, [currentPage])
 
     const setLastPage = useCallback((newLasPage) => {
@@ -21,6 +24,7 @@ export const usePagination = (initialPage = 1, lastPage = 10) => {
     }, [])
 
     return {
+        viewPage,
         currentPage,
         handleNextPage,
         handlePreviusPage,

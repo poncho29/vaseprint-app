@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import { getUsers } from '../../services/users';
+import { deleteUser, getUsers } from '../../services/users';
 
+import { useAlert } from '../../hooks';
 import { usePagination } from '../../hooks/UsePagination';
 
 import AdminTable from '../../components/admin/AdminTable'
 
+const offset = 5
 const limit = 5;
 
 const AdminUser = () => {
@@ -14,36 +16,20 @@ const AdminUser = () => {
   const [totalPage, setTotalPages] = useState(1);
   const [searchText, setSearchText] = useState('');
   const [selectValue , setSelectValue] = useState('');
+  const [loading , setLoading] = useState(false);
 
   // Hooks
-  const { currentPage, handleNextPage, handlePreviusPage, setLastPage } = usePagination(1);
+  const { toast } = useAlert()
+  const { 
+    viewPage, 
+    currentPage,
+    handleNextPage,
+    handlePreviusPage, 
+    setLastPage 
+  } = usePagination(0, offset);
 
   // Effects
-  useEffect(() => {
-    const getAllUsers = async () => {
-      try {
-        const data = await getUsers(currentPage, limit);
-        const maxPages = Math.ceil(data.count / limit);
-        setTotalPages(maxPages);
-        setLastPage(maxPages);
-
-        const newUsers = data.users.map((user) => {
-          const { roleId, ...rest } = user;
-
-          const newUser = {
-            ...rest,
-            role: roleId
-          }
-
-          return newUser
-        })
-
-        setUsers(newUsers);       
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
+  useEffect(() => {    
     getAllUsers()
   }, [currentPage]);
   
@@ -74,18 +60,61 @@ const AdminUser = () => {
   }, [users, searchText]);
 
   // Functions
+  const getAllUsers = async () => {
+    try {
+      const data = await getUsers(currentPage, limit);
+      const maxPages = Math.ceil(data.count / limit);
+      setTotalPages(maxPages);
+      setLastPage(maxPages);
+
+      const newUsers = data.users.map((user) => {
+        const { roleId, ...rest } = user;
+
+        const newUser = {
+          ...rest,
+          role: roleId
+        }
+
+        return newUser
+      })
+
+      setUsers(newUsers);       
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // Edit user
   const handlerEdit = (user) => {
     console.log(user)
   }
 
-  const handlerDel = (user) => {
-    console.log(user)
+  // Delelte User
+  const handlerDel = async (user) => {
+    if (!user) return;
+
+    setLoading(true);
+    const { status, data } = await deleteUser(user.id);
+
+    if (status === 200) {
+      toast.success(data.msg);
+      await getAllUsers();
+      setLoading(false);
+      return;
+    }
+
+    if (data.errors) {
+      toast.error(data.errors[0].msg)
+    }
+    setLoading(false);
   }
 
+  // View User
   const handlerView = (user) => {
     console.log(user)
   }
 
+  // Add User
   const handlerAdd = () => {
     console.log('crear')
   }
@@ -94,16 +123,17 @@ const AdminUser = () => {
     <div className="user__container">
       <AdminTable
         userTable
+        loading={loading}
         data={usersFiltered}
         searchText={searchText}
         selectValue={selectValue}
         totalPages={totalPage}
-        currentPage={currentPage}
+        currentPage={viewPage}
         renderTableRowHeader={['id', 'email', 'role']}
         onAdd={handlerAdd}
         onEdit={handlerEdit}
-        onView={handlerDel}
-        onDelete={handlerView}
+        onView={handlerView}
+        onDelete={handlerDel}
         onSearch={(e) => setSearchText(e)}
         onSelect={(e) => setSelectValue(e)}
         onNextPage={() => handleNextPage()}

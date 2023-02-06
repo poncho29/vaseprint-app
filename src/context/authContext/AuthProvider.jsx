@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = (user) => {
     localStorage.setItem('uservp', JSON.stringify(user));
-    localStorage.setItem('tokenVsprint', JSON.stringify(user.token));
+    localStorage.setItem('tokenVsprint', user.token);
     setUser(user.user);
     setToken(user.token);
   }

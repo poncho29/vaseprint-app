@@ -28,18 +28,19 @@ const LoginForm = ({ navigateModal, closeModal }) => {
     onSubmit: async (values) => {
       setLoading(true);
 
-      const data = await login(values);
+      const {status, data} = await login(values);
       setLoading(false);      
 
-      if (data.status === 400) {
-        toast.error(data.msg);
+
+      if (status === 200) {
+        loginAuth(data);     
+        toast.success('Has iniciado sesión correctamente');
+        formik.handleReset();
+        closeModal();       
         return;
       }
 
-      loginAuth(data);     
-      toast.success('Has iniciado sesión correctamente');
-      formik.handleReset();
-      closeModal();
+      toast.error(data.msg);
     }
   });
   
