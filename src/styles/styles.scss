@@ -1,8 +1,6 @@
 @use './base/reset';
 @use './app';
 
-// Layouts
-
 // PAGES
 @use './views/home';
 @use './views/admin/adminUser';
@@ -13,26 +11,26 @@
 @use './components/common/header';
 @use './components/common/navbar';
 @use './components/common/footer';
-@use './components/common/slideshow';
 @use './components/common/spinner';
-@use './components/common/select';
+@use './components/common/slideshow';
 
-// Forms
+// Forms & Forms Components
 @use './components/forms/input';
+@use './components/forms/inputSearch';
+@use './components/forms/select';
 @use './components/forms/loginForm';
-@use './components/forms/registerForm';
 @use './components/forms/forgotForm';
+@use './components/forms/registerForm';
 
-// Home
+// Home Components
 @use './components/home/cardTip';
-
-// ADMIN
-@use './components/admin/adminTable';
-
-// Layouts
-@use './components/layouts/layoutAdmin';
 
 // Modals
 @use './components/modals/modalAuth';
 
-// TOOLS
+// Admin Components
+@use './components/admin/adminTable';
+
+// Layout Admin
+@use './components/layouts/layoutAdmin';
+

@@ -25,6 +25,8 @@ const dataUser = [
 
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
+  const [searchText, setSearchText] = useState('');
+  const [selectValue , setSelectValue] = useState('');
 
   // const usersCallback = useCallback(() => getUsers(), []);
 
@@ -54,31 +56,36 @@ const AdminUser = () => {
     getAllUsers()
   }, []);
 
-  const editUser = (user) => {
+  const handlerEdit = (user) => {
     console.log(user)
   }
 
-  const deleteUser = (user) => {
+  const handlerDel = (user) => {
     console.log(user)
   }
 
-  const viewUser = (user) => {
+  const handlerView = (user) => {
     console.log(user)
+  }
+
+  const handlerAdd = () => {
+    console.log('crear')
   }
 
   return (
     <div className="user__container">
-      {/* <div className="user__filters">
-        <h2>Filtros</h2>
-      </div> */}
-    
       <AdminTable
-        data={users}
         userTable
+        data={users}
+        searchText={searchText}
+        selectValue={selectValue}
         renderTableRowHeader={['id', 'email', 'role']}
-        onEdit={editUser}
-        onView={viewUser}
-        onDelete={deleteUser}
+        onAdd={handlerAdd}
+        onEdit={handlerEdit}
+        onView={handlerDel}
+        onDelete={handlerView}
+        onSearch={(e) => setSearchText(e)}
+        onSelect={(e) => setSelectValue(e)}
       />
     </div>
   )

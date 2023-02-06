@@ -6,7 +6,7 @@ const Select = ({
   name = '',
   value = '',
   options = [],
-  handlerChange = () => {}
+  handlerChange = (e) => {}
 }) => {
   const [changeArrow, setChangeArrow] = useState(false);
 

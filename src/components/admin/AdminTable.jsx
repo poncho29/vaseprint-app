@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { capitalize } from '../../utils/capitalize';
 
-import { FaEye, FaEdit, FaTrash, FaAngleDown, FaAngleUp } from 'react-icons/fa';
-import Select from '../common/Select';
+import Select from '../forms/Select';
+import InputSearch from '../forms/InputSearch';
+
+import { FaEye, FaEdit, FaTrash, FaPlusCircle } from 'react-icons/fa';
 
 const IconActions = [
   {
@@ -22,28 +24,62 @@ const IconActions = [
 
 const AdminTable = ({
   data = [],
+  searchText = '',
+  selectValue = '',
   userTable = false,
   renderTableRowHeader = [],
   actionsIcons = IconActions,
   showActionColumnHeader = true,
 
+  onAdd = (e) => {},
   onView = (e) => {},
   onEdit = (e) => {},
   onDelete = (e) => {},
+  onSelect = (e) => {},
+  onSearch = (e) => {}
 }) => {
-  const handlerFilter = (e) => {
-    console.log(e)
-  }
-
   return (
     <div className='content__table'>
       <section className='filter__table'>
-        <Select
-          id='filter'
-          name='filter'
-          options={renderTableRowHeader}
-          handlerChange={handlerFilter}
-        />
+        <div className='filter__group'>
+          <InputSearch
+            showSearch
+            id='search'
+            name='search'
+            value={searchText}
+            sizeLogo={16}
+            onChange={({ target }) => {
+              onSearch(target.value)
+            }}
+          />
+          <Select
+            id='filter'
+            name='filter'
+            value={selectValue}
+            options={renderTableRowHeader}
+            handlerChange={(value) => {
+              onSelect(value)
+            }}
+          />
+        </div>
+        <div className='buttons__group'>
+          <button
+            className='btn__clear'
+            onClick={() => {
+              console.log('clear')
+              onSelect("");
+              onSearch("");
+            }}
+          >
+            Limpiar
+          </button>
+          <button
+            className='btn__add'
+            onClick={onAdd}
+          >
+            <FaPlusCircle size={32} />
+          </button>
+        </div>
       </section>
 
       <table className='admin__table'>
