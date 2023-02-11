@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 
-import Input from './Input';
-import Button from '../common/Button';
+import { Input } from './';
+import { Button } from '../common';
 
 const initialValues = {
   currentPass: "",

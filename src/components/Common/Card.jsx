@@ -1,6 +1,6 @@
 import { capitalize, formatterPeso } from "./../../utils";
 
-const Card = ({ title, price, url }) => {
+export const Card = ({ title, price, url }) => {
   return (
     <div className="card">
       <figure className="card-img">
@@ -16,5 +16,3 @@ const Card = ({ title, price, url }) => {
     </div>
   )
 }
-
-export default Card;

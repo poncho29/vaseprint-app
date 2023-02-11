@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-
 import { capitalize } from '../../utils/capitalize';
 
-import Select from '../forms/Select';
-import InputSearch from '../forms/InputSearch';
+import { Select, InputSearch } from '../';
 
 import { FaEye, FaEdit, FaTrash, FaPlusCircle, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import Spinner from '../common/Spinner';
 
 const IconActions = [
   {
@@ -23,7 +19,7 @@ const IconActions = [
   }
 ]
 
-const AdminTable = ({
+export const AdminTable = ({
   data = [],
   searchText = "",
   selectValue = "",
@@ -161,5 +157,3 @@ const AdminTable = ({
     </div>
   )
 }
-
-export default AdminTable

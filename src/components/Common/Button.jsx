@@ -1,7 +1,7 @@
 import React from 'react'
-import Spinner from './Spinner'
+import { Spinner } from './Spinner'
 
-const Button = ({
+export const Button = ({
   text = 'save',
   disabled = false,
   type = 'button' | 'submit' | 'reset',
@@ -27,6 +27,4 @@ const Button = ({
       }
     </button>
   )
-}
-
-export default Button
+};

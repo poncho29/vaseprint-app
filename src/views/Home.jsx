@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/product";
-import { Slideshow } from "../components";
 
-import Card from "../components/common/Card";
-import { CardTip } from "../components/home/CardTip";
+import { Card, CardTip, Slideshow } from "../components";
 
-import Mouse from '../assets/images/mouse-genius-dx-120-usb.png';
-import Epson from '../assets/images/epson.png';
 import Tip from '../assets/images/tip.png';
+import Epson from '../assets/images/epson.png';
 import Adata from '../assets/images/logo-adata.png';
 import Genius from '../assets/images/logo-genius.png';
+import LogoEpson from '../assets/images/logo-epson.png';
 import Logitech from '../assets/images/logo-logitech.png';
 import Kingston from '../assets/images/logo-kingston.png';
-import LogoEpson from '../assets/images/logo-epson.png';
+import Mouse from '../assets/images/mouse-genius-dx-120-usb.png';
 
 const products = [
   { price: 22000, title: 'Mouse Genius DX-120 USB', img: Mouse },

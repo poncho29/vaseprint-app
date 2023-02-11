@@ -1,10 +1,9 @@
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../hooks";
 
-import { Header, Footer } from "../components";
-import { useEffect } from "react";
-import LayoutAdmin from "../components/layouts/LayoutAdmin";
+import { Header, Footer, LayoutAdmin } from "../components";
 
 export const AdminRoutes = () => {
   const { user } = useAuth();

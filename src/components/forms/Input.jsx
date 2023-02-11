@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
-const Input = ({
+export const Input = ({
   id = '',
   name = '',
   value = '',
@@ -57,6 +57,4 @@ const Input = ({
       </div>
     </article>
   )
-}
-
-export default Input;
+};

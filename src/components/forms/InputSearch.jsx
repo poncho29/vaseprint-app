@@ -1,6 +1,6 @@
 import { FaSearch } from "react-icons/fa";
 
-const InputSearch = ({
+export const InputSearch = ({
   id = '',
   name = '',
   value = '',
@@ -34,6 +34,4 @@ const InputSearch = ({
       />     
     </div>
   )
-}
-
-export default InputSearch;
+};

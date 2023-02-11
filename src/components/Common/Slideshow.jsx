@@ -6,7 +6,7 @@ import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import carrusel1 from '../../assets/images/carrucel-1.png';
 import carrusel2 from '../../assets/images/carrucel-2.png';
 
-const Slideshow = ({
+export const Slideshow = ({
     message = true.valueOf,
     controls = false, 
     autoplay = false, 
@@ -148,8 +148,4 @@ const Slideshow = ({
       }
     </div>
   )
-}
-
-export {
-  Slideshow
 }

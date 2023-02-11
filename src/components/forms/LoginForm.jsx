@@ -2,8 +2,8 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 
-import Input from './Input';
-import Button from '../common/Button';
+import { Input } from './';
+import { Button } from '../common';
 import { login } from '../../services/auth';
 import { useAuth, useAlert } from '../../hooks';
 

@@ -5,7 +5,7 @@ import { deleteUser, getUsers } from '../../services/users';
 import { useAlert } from '../../hooks';
 import { usePagination } from '../../hooks/UsePagination';
 
-import AdminTable from '../../components/admin/AdminTable'
+import { AdminTable } from '../../components'
 
 const offset = 5
 const limit = 5;

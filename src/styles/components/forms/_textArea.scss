@@ -1,0 +1,50 @@
+@use '../../base/mixins';
+
+.area__group {
+  width: 100%;
+  margin-bottom: 10px;
+
+  & label {
+    font-size: 10px;
+    margin-bottom: 5px;
+
+    // Tablet
+    @include mixins.media(md) {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+  }
+
+  & .area__content {
+    & .textArea {
+      width: 100%;
+      // height: 1.25rem;
+      font-size: .625rem;
+      font-weight: 400;
+      padding: 2px 10px;
+      border-radius: 5px;
+      border-bottom: 1px solid #B3B3B3;
+
+      // Tablet
+      @include mixins.media(md) {
+        font-size: 18px;
+        height: 30px;
+      }
+  
+      &:focus-visible {
+        outline: none;
+        border-bottom: 1px solid var(--blue-ligth);
+      }
+    }
+
+    & .input__error {
+      color: red;
+      font-size: .625rem;
+
+      // Tablet
+      @include mixins.media(md) {
+        font-size: 12px;
+      }
+    }
+  }
+}

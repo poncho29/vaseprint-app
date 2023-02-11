@@ -1,5 +1,5 @@
 
-const Spinner = ({ size = '24px' }) => {
+export const Spinner = ({ size = '24px' }) => {
   return (
     <span
       className="loader"
@@ -7,5 +7,3 @@ const Spinner = ({ size = '24px' }) => {
     </span>
   )
 }
-
-export default Spinner;

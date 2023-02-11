@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 
-import { FaUsers, FaBoxOpen } from 'react-icons/fa';
-import { MdTipsAndUpdates } from 'react-icons/md';
 import { IoDocumentText } from 'react-icons/io5';
+import { MdTipsAndUpdates } from 'react-icons/md';
+import { FaUsers, FaBoxOpen } from 'react-icons/fa';
 
 const adminLinks = [
   {
@@ -27,7 +27,7 @@ const adminLinks = [
   }
 ]
 
-const LayoutAdmin = ({ children }) => {
+export const LayoutAdmin = ({ children }) => {
   return (
     <div className="admin__container">
       <div className="admin__sidebar">
@@ -52,5 +52,3 @@ const LayoutAdmin = ({ children }) => {
     </div>
   )
 }
-
-export default LayoutAdmin

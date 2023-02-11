@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 
-const Select = ({
+export const Select = ({
   id = '',
   name = '',
   value = '',
@@ -41,6 +41,4 @@ const Select = ({
       </div>
     </div>
   )
-}
-
-export default Select
+};

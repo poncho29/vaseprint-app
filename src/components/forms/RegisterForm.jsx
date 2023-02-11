@@ -5,8 +5,8 @@ import { useFormik } from 'formik';
 import { useAlert } from '../../hooks';
 import { createUser } from '../../services/auth';
 
-import Input from "./Input";
-import Button from '../common/Button';
+import { Input } from './';
+import { Button } from '../common';
 
 const initialValues = {
   name: "",
