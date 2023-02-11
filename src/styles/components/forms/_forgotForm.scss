@@ -1,0 +1,57 @@
+@use '../../base/mixins';
+
+.forgot__form {
+  & .forgot__title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 12px;
+    margin-bottom: 10px;
+
+    // Tablet
+    @include mixins.media(md) {
+      font-size: 1.25rem;
+      margin-bottom: .875rem;
+    }
+  }
+
+  & .forgot__subtitle {
+    font-size: .625rem;
+    margin-bottom: 1.375rem;
+
+    // Tablet
+    @include mixins.media(md) {
+      font-size: 1rem;
+    }
+  }
+
+  & .forgot__register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: .5rem;
+
+    & .link__login {
+      color: var(--gray);
+      font-size: 10px;
+      font-weight: 400;
+      margin-top: 8px;
+
+      // Tablet
+        @include mixins.media(md) {
+          font-size: 14px;
+        }
+
+      & span {
+        cursor: pointer;
+        color: var(--gray);
+        text-decoration: underline;
+
+        // Tablet
+        @include mixins.media(md) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

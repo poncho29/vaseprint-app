@@ -1,0 +1,18 @@
+.about__main {
+  width: 100%;
+  padding: 1.8125rem 0;
+  background-color: var(--gray-bg);
+
+  & .about__title {
+    font-size: .8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0 1.5625rem 1.5625rem 1.5625rem;
+  }
+
+  & .about__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+}

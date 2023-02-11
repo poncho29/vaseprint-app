@@ -1,14 +1,11 @@
 import { NavLink } from "react-router-dom";
 
+import { useAuth } from "../../hooks";
+
 import { AiFillCloseSquare } from 'react-icons/ai';
 
 export const Navbar = ({ showNavbar, showMenu }) => {
-
-  // const onLogout = () => {
-  //   navigate('/login', {
-  //     replace: true // Borra la ruta del historial para no poder regresar
-  //   });
-  // }
+  const { user } = useAuth();
 
   return (
     <>    
@@ -61,6 +58,17 @@ export const Navbar = ({ showNavbar, showMenu }) => {
           >
             Contacto
           </NavLink>
+
+          {
+            user &&
+            <NavLink 
+              to="/admin"
+              onClick={showMenu}
+              className={ ({isActive}) => `nav__item ${ isActive ? 'active' : '' }`}
+            >
+              Admin
+            </NavLink>
+          }
         </div>
       </nav>
     </>

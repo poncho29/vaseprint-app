@@ -1,0 +1,40 @@
+@use '../../base/mixins';
+
+.btn_component {
+  width: 120px;
+  height: 30px;
+  color: var(--white);
+  font-size: 12px;
+  border-radius: .5rem;
+  background-color: var(--blue-ligth);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background-color: var(--blue-dark);
+  }
+
+  // Tablet
+  @include mixins.media(md) {
+    height: 38px;
+    font-size: 16px;
+  }
+}
+
+// Variant
+.bg__secundary{
+  background-color: var(--gray);
+
+  &:hover {
+    color: var(--dark);
+    background-color: var(--gray-ligth);
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}

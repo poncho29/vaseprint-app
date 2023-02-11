@@ -1,0 +1,122 @@
+@use '../../base/mixins';
+
+.content__table {
+  width: 100%;
+  overflow-x: scroll;
+
+  @include mixins.media(md) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  // Filters y Buttons
+  & .filter__table {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    & .filter__group {
+      width: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+
+      @include mixins.media(md) {
+        flex-direction: row;
+        gap: 1rem;
+      }
+    }
+    
+    & .buttons__group {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      gap: 1rem;
+      width: 100%;
+      max-width: 100px;
+
+      @include mixins.media(md) {
+        flex-direction: row;
+        max-width: none;
+      }
+
+      & .btn__clear {
+        color: white;
+        padding: 6px 12px;
+        border-radius: 10px;
+        background-color: var(--blue-ligth);
+      }
+
+      & .btn__add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & svg {
+          fill: var(--blue-ligth);
+        }
+      }
+    }
+  }
+
+   // Table
+  & .admin__table {
+    width: 100%;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  
+    & thead {
+      & .tr__labels {
+        & th {
+          padding: 1rem;
+          border: 1px solid black;
+        }      
+      }
+    }
+
+    & tbody {
+      & .tr__data {
+        & td {
+          padding: 1rem;
+          border: 1px solid black;
+  
+          &:first-child {
+            text-align: center;
+          }
+          
+          & .td__actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+          }
+        }
+  
+      }
+    }
+  }
+
+  // Pagination
+  & .pagination__table {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    & .pagination__text {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}
+
+.loading__table {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: rgba($color: #c2c2c2, $alpha: .5) ;
+}
