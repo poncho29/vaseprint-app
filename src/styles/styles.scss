@@ -3,6 +3,7 @@
 
 // PAGES
 @use './views/home';
+@use './views/about';
 @use './views/admin/adminUser';
 
 // COMPONENTS
@@ -24,6 +25,9 @@
 
 // Home Components
 @use './components/home/cardTip';
+
+// About Componets
+@use './components/about/aboutCard';
 
 // Modals
 @use './components/modals/modalAuth';
