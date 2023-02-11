@@ -58,7 +58,6 @@ const RegisterForm = ({ navigateModal }) => {
       const resp = await createUser(newUser);
       setLoading(false);
 
-      console.log(resp);
       if (resp.errors) {
         resp.errors.forEach((err) => {
           toast.error(err.msg);
