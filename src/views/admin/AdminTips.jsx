@@ -1,8 +1,7 @@
-import React from 'react'
 
 const AdminTips = () => {
   return (
-    <div>AdminTips</div>
+    <div>Admin Tips</div>
   )
 }
 

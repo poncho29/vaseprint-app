@@ -1,0 +1,19 @@
+.inputFile {
+  & .inputFile__upload {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+  }
+
+  & .inputFile__delete {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+  }
+
+  & .input {
+    display: none;
+  }
+}

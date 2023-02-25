@@ -5,7 +5,10 @@
 @use './views/home';
 @use './views/about';
 @use './views/contact';
-@use './views/admin/adminUser';
+
+// Admin
+@use './views/admin/adminUsers/adminUser';
+@use './views/admin/adminUsers/formUser';
 
 // COMPONENTS
 @use './components/common/card';
@@ -18,6 +21,7 @@
 
 // Forms & Forms Components
 @use './components/forms/input';
+@use './components/forms/inputFile';
 @use './components/forms/inputSearch';
 @use './components/forms/select';
 @use './components/forms/textArea';

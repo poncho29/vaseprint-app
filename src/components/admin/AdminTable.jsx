@@ -13,10 +13,10 @@ const IconActions = [
     name: 'delete',
     icon: <FaTrash size={18} />
   },
-  {
-    name: 'view',
-    icon: <FaEye size={18} />
-  }
+  // {
+  //   name: 'view',
+  //   icon: <FaEye size={18} />
+  // }
 ]
 
 export const AdminTable = ({
@@ -33,7 +33,7 @@ export const AdminTable = ({
   showActionColumnHeader = true,
 
   onAdd = (e) => {},
-  onView = (e) => {},
+  // onView = (e) => {},
   onEdit = (e) => {},
   onDelete = (e) => {},
   onSelect = (e) => {},
@@ -124,7 +124,7 @@ export const AdminTable = ({
                     <div className='td__actions'>
                       <div onClick={() => onEdit(item)}>{ actionsIcons[0].icon}</div>
                       <div onClick={() => onDelete(item)}>{ actionsIcons[1].icon}</div>
-                      <div onClick={() => onView(item)}>{ actionsIcons[2].icon}</div>                 
+                      {/* <div onClick={() => onView(item)}>{ actionsIcons[2].icon}</div>                  */}
                     </div>
                   </td>
                 }

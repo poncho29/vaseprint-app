@@ -47,12 +47,14 @@
         color: white;
         padding: 6px 12px;
         border-radius: 10px;
+        cursor: pointer;
         background-color: var(--blue-ligth);
       }
 
       & .btn__add {
         display: flex;
         justify-content: center;
+        cursor: pointer;
         align-items: center;
 
         & svg {
@@ -93,6 +95,10 @@
             display: flex;
             justify-content: center;
             gap: 8px;
+
+            & div {
+              cursor: pointer;
+            }
           }
         }
   

@@ -13,11 +13,12 @@ const initialValues = {
   emailReg: "",
   phone: "",
   pass: "",
-  passConfirm: ""
+  passConfirm: "",
 }
 
 const RegisterForm = ({ navigateModal }) => {
   const { toast } = useAlert();
+
   const [loading, setLoading] = useState(false);
 
   const formikReg = useFormik({
@@ -52,7 +53,8 @@ const RegisterForm = ({ navigateModal }) => {
         email: data.emailReg,
         password: pass,
         state: true,
-        roleId: 2
+        roleId: 2,
+        img: data.img
       }
 
       const resp = await createUser(newUser);
@@ -71,6 +73,48 @@ const RegisterForm = ({ navigateModal }) => {
     }
   });
 
+  // const handleInputFile = async (e) => {
+  //   e.preventDefault();
+  //   const form = new FormData();
+  //   const files = e.target.files;
+    
+  //   if (files && files.length > 1) {
+  //     toast.error("Solo puede cargar 1 imagen");
+  //     return;
+  //   } 
+
+  //   const img = files[0];
+  //   form.append('file', img)
+  //   const data = await uploadFile(form);
+
+  //   if (data.err) {
+  //     toast.error("Error al cargar la imagen");
+  //     return
+  //   }
+
+  //   e.target.files = null;
+  //   setImgProfile(data.url)
+  //   formikReg.setFieldValue('img', data.url);
+  // }
+
+  // const handleResetImg = async () => {
+  //   const imgId = getIdImg(imgProfile)
+
+  //   console.log(imgId);
+  //   const data = await deleteFile(imgId)
+  //   console.log(data);
+
+  //   if (data.err) {
+  //     toast.error("Error al eliminar la imagen");
+  //     return;
+  //   }
+
+  //   if (data.result === 'ok') {
+  //     setImgProfile('')
+  //     formikReg.setFieldValue('img', '')
+  //   }        
+  // }
+
   return (
     <form onSubmit={formikReg.handleSubmit} className="form__register">     
       <div className="register__header">
@@ -86,8 +130,8 @@ const RegisterForm = ({ navigateModal }) => {
         label="Nombres *"
         required={true}
         value={formikReg.values.name}
-        onChange={formikReg.handleChange}
         error={formikReg.errors.name}
+        onChange={formikReg.handleChange}
       />
 
       <Input
@@ -97,8 +141,8 @@ const RegisterForm = ({ navigateModal }) => {
         label="Correo Electronico *"
         required={true}
         value={formikReg.values.emailReg}
-        onChange={formikReg.handleChange}
         error={formikReg.errors.emailReg}
+        onChange={formikReg.handleChange}
       />
 
       <Input
@@ -108,8 +152,8 @@ const RegisterForm = ({ navigateModal }) => {
         label="Celular *"
         required={true}
         value={formikReg.values.phone}
-        onChange={formikReg.handleChange}
         error={formikReg.errors.phone}
+        onChange={formikReg.handleChange}
       />
 
       <Input
@@ -121,8 +165,8 @@ const RegisterForm = ({ navigateModal }) => {
         showLogo={true}
         required={true}
         value={formikReg.values.pass}
-        onChange={formikReg.handleChange}
         error={formikReg.errors.pass}
+        onChange={formikReg.handleChange}
       />
 
       <Input
@@ -134,9 +178,51 @@ const RegisterForm = ({ navigateModal }) => {
         showLogo={true}
         required={true}
         value={formikReg.values.passConfirm}
-        onChange={formikReg.handleChange}
         error={formikReg.errors.passConfirm}
+        onChange={formikReg.handleChange}
       />
+
+      {/* <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1rem'
+        }}
+      >
+        
+        { imgProfile ?
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <img
+              style={{ width: '60px', height: '90px',}}
+              src={imgProfile}
+              alt="img"
+            />
+            <button type='button' onClick={handleResetImg}>delete</button>
+          </div>
+          :
+          <div>
+            <div style={{ 
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '90px',
+              height: '90px',
+              borderRadius: '11px',
+              backgroundColor: '#ccc',
+              fontSize: '12px'
+            }}
+            >
+              Img Profile
+            </div>
+            <input
+              id='file'
+              name='img'
+              type="file"
+              onChange={handleInputFile}
+            />
+          </div>
+        }
+                
+      </div> */}
 
       <div className="footer__register">
         <Button
