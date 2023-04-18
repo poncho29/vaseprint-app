@@ -10,6 +10,7 @@ import FormUser from "../views/admin/adminUsers/FormUser";
 import AdminProducts from "../views/admin/AdminProducts";
 import AdminTips from "../views/admin/AdminTips";
 import AdminBlog from "../views/admin/AdminBlog";
+import { Store } from "../views/Store";
 
 export const Router = () => {
   return (
@@ -17,7 +18,7 @@ export const Router = () => {
       <Routes>
         <Route path="/" element={<AppRoutes />}>
           <Route index element={<Home />} />
-          <Route path="store" element={<div>Tienda</div>} />
+          <Route path="store" element={<Store />} />
           <Route path="blog" element={<Blog />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />          

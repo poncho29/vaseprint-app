@@ -23,16 +23,14 @@ export const About = () => {
       />
 
       <section className="about__content">
-        {
-          aboutData.map((card, index) => (
-            <AboutCard
-              key={index}
-              text={card.text}
-              title={card.title}
-              align={card.align}
-            />
-          ))
-        }
+        {aboutData.map((card, index) => (
+          <AboutCard
+            key={index}
+            text={card.text}
+            title={card.title}
+            align={card.align}
+          />
+        ))}
       </section>
     </div>
   )
