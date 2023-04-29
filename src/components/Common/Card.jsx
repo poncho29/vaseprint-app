@@ -10,7 +10,7 @@ export const Card = ({ title, price, url }) => {
         <p className="card-price">{formatterPeso.format(price)}</p>
         <p className="card-title">{capitalize(title)}</p>
         <div className='card-content-btn'>
-          <button className="card-btn">Ver producto</button>
+          <button className="card-btn" onClick={() => alert('hola')}>Ver producto</button>
         </div>
       </div>
     </div>
